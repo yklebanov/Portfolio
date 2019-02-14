@@ -1,0 +1,54 @@
+
+# In this lab we create a program that determines the top 5 most
+# commonly used words in a (hard-coded) passage of text. After
+# processing the passage, it prints the top 5 words and the number
+# of times each occurs.
+
+from segmentation import load_text
+from segmentation import text_to_word_list
+
+## Main program
+
+green_eggs_and_ham = load_text('eggs_and_ham.txt')
+print(green_eggs_and_ham)
+word_list = text_to_word_list(green_eggs_and_ham)
+print(word_list)
+
+word_count = {}
+def count_frequencies():
+	for word in word_list:
+		if word in word_count:
+			word_count[word] += 1
+		else:
+			word_count[word] = 1
+count_frequencies()
+print("")
+print(word_count) 
+
+def find_max_valued_key(dictionary_name):
+	highest = 0
+	maxword = " "
+	for word in dictionary_name:
+		if dictionary_name[word] > highest:
+			highest = dictionary_name[word]
+			maxword = word
+	return [maxword, highest]
+print(" ")
+find_max_valued_key(word_count)
+
+for i in range (0,3):
+	find_max_valued_key(word_count)
+	print(find_max_valued_key(word_count))
+	word_count.pop(find_max_valued_key(word_count)[0])
+print(word_count)
+
+
+
+
+#occurs = input("What word would you like to know the frequency of?")
+#if occurs in word_count:
+	#print(word_count[occurs])
+#else:
+	#print("The word " + occurs + " does not occur in the paragraph")
+
+
